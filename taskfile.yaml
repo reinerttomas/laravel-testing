@@ -8,3 +8,11 @@ tasks:
   down:
     cmds:
       - docker-compose down
+
+  phpstan:
+    cmds:
+      - ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G
+
+  ci:
+    cmds:
+      - task: phpstan
