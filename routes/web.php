@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\PageHomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', PageHomeController::class)->name('home');
