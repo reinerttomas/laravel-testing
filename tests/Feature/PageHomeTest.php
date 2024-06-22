@@ -9,46 +9,42 @@ use function Pest\Laravel\get;
 
 it('shows courses overview', function () {
     // Arrange
-    Course::factory()->create(['title' => 'Course A', 'description' => 'Description Course A', 'released_at' => CarbonImmutable::now()]);
-    Course::factory()->create(['title' => 'Course B', 'description' => 'Description Course B', 'released_at' => CarbonImmutable::now()]);
-    Course::factory()->create(['title' => 'Course C', 'description' => 'Description Course C', 'released_at' => CarbonImmutable::now()]);
+    $course1 = Course::factory()->released()->create();
+    $course2 = Course::factory()->released()->create();
+    $course3 = Course::factory()->released()->create();
 
     // Act & Assert
     get(route('home'))
         ->assertSee([
-            'Course A',
-            'Description Course A',
-            'Course B',
-            'Description Course B',
-            'Course C',
-            'Description Course C',
+            $course1->title,
+            $course1->description,
+            $course2->title,
+            $course2->description,
+            $course3->title,
+            $course3->description,
         ]);
 });
 
 it('shows only released courses', function () {
     // Arrange
-    Course::factory()->create(['title' => 'Course A', 'released_at' => CarbonImmutable::yesterday()]);
-    Course::factory()->create(['title' => 'Course B']);
+    $releasedCourse = Course::factory()->released()->create();
+    $notReleasedCourse = Course::factory()->create();
 
     // Act & Assert
     get(route('home'))
-        ->assertSee([
-            'Course A',
-        ])
-        ->assertDontSee([
-            'Course B',
-        ]);
+        ->assertSee($releasedCourse->title)
+        ->assertDontSee($notReleasedCourse->title);
 });
 
 it('shows courses by release date', function () {
     // Arrange
-    Course::factory()->create(['title' => 'Course A', 'released_at' => CarbonImmutable::yesterday()]);
-    Course::factory()->create(['title' => 'Course B', 'released_at' => CarbonImmutable::now()]);
+    $course1 = Course::factory()->released(CarbonImmutable::yesterday())->create();
+    $course2 = Course::factory()->released()->create();
 
     // Act & Assert
     get(route('home'))
         ->assertSeeInOrder([
-            'Course B',
-            'Course A',
+            $course2->title,
+            $course1->title,
         ]);
 });
