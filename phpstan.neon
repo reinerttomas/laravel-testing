@@ -13,3 +13,8 @@ parameters:
 	        message: '#Call to an undefined method Pest\\Mixins\\Expectation<Illuminate\\Database\\Eloquent\\Collection<[a-zA-Z0-9\\_]+, [a-zA-Z0-9\\_]+>\|null>::[a-zA-Z0-9\\_]+.#'
 	        paths:
 	            - tests/*
+
+	    -
+	        message: '#Access to an undefined property Pest\\Mixins\\Expectation<Illuminate\\Database\\Eloquent\\Collection<[a-zA-Z0-9\\_]+, [a-zA-Z0-9\\_]+>\|null>::[a-zA-Z0-9\\_\$]+.#'
+	        paths:
+	            - tests/*

@@ -9,7 +9,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Course>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
  */
 class CourseFactory extends Factory
 {
@@ -18,8 +18,12 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
+            'slug' => $this->faker->unique()->slug(),
+            'tagline' => $this->faker->sentence(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
+            'image' => $this->faker->imageUrl(),
+            'learnings' => ['Learn A', 'Learn B', 'Learn C'],
         ];
     }
 
