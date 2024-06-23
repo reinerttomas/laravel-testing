@@ -18,3 +18,8 @@ parameters:
 	        message: '#Access to an undefined property Pest\\Mixins\\Expectation<Illuminate\\Database\\Eloquent\\Collection<[a-zA-Z0-9\\_]+, [a-zA-Z0-9\\_]+>\|null>::[a-zA-Z0-9\\_\$]+.#'
 	        paths:
 	            - tests/*
+
+	    -
+	        message: '#Cannot call method [a-zA-Z0-9\(\)]+ on array\|Pest\\Expectation<array\|string>\|Pest\\Expectations\\EachExpectation<array\|string>\|Pest\\Expectations\\HigherOrderExpectation<Pest\\Expectation<array\|string>, array\|string\|null>\|Pest\\Expectations\\OppositeExpectation<array\|string>\|string.#'
+	        paths:
+	            - tests/*

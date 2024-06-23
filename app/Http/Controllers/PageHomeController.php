@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Queries\GetNewestReleasedCoursesQuery;
 use Illuminate\View\View;
 
 class PageHomeController extends Controller
 {
-    public function __invoke(): View
+    public function __invoke(GetNewestReleasedCoursesQuery $query): View
     {
-        $courses = Course::query()
-            ->released()
-            ->orderByDesc('released_at')
-            ->get();
+        $courses = $query->run();
 
-        return view('home', compact('courses'));
+        return view('pages.home', compact('courses'));
     }
 }

@@ -4,18 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Course;
 use App\Models\Video;
-use App\Queries\Released;
-
-it('only returns released courses for release scope ', function () {
-    // Arrange
-    Course::factory()->released()->create();
-    Course::factory()->create();
-
-    // Act & Assert
-    expect(Course::released()->get())
-        ->toHaveCount(1)
-        ->first()->id->toEqual(1);
-});
+use App\Queries\Scopes\Released;
 
 it('only returns released courses for release tappable scope', function () {
     // Arrange
