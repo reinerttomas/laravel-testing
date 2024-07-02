@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Fortify;
 
 use App\Models\User;
@@ -13,7 +15,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Validate and update the given user's profile information.
      *
-     * @param  array<string, mixed>  $input
+     * @param  array{name: string, email: string, photo: \Illuminate\Http\UploadedFile|null}  $input
      */
     public function update(User $user, array $input): void
     {
@@ -27,8 +29,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if ($input['email'] !== $user->email && $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
@@ -41,7 +42,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Update the given verified user's profile information.
      *
-     * @param  array<string, string>  $input
+     * @param  array{name: string, email: string}  $input
      */
     protected function updateVerifiedUser(User $user, array $input): void
     {

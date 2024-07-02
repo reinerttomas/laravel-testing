@@ -67,7 +67,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Course>
      */
     public function courses(): BelongsToMany
     {

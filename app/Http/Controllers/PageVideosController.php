@@ -6,5 +6,5 @@ namespace App\Http\Controllers;
 
 class PageVideosController extends Controller
 {
-    public function __invoke() {}
+    public function __invoke(): void {}
 }

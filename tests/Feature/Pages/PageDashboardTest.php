@@ -12,7 +12,7 @@ use function Pest\Laravel\get;
 
 it('cannot be accessed by guest', function () {
     // Act & Assert
-    get(route('dashboard'))
+    get(route('pages.dashboard'))
         ->assertRedirect(route('login'));
 });
 
@@ -29,7 +29,7 @@ it('lists purchased courses', function () {
 
     // Act & Assert
     actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('pages.dashboard'))
         ->assertOk()
         ->assertSeeText([
             'Course A',
@@ -44,7 +44,7 @@ it('doest not list other courses', function () {
 
     // Act & Assert
     actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('pages.dashboard'))
         ->assertOk()
         ->assertDontSee($course->title);
 });
@@ -60,7 +60,7 @@ it('shows latest purchased course first', function () {
 
     // Act & Assert
     actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('pages.dashboard'))
         ->assertOk()
         ->assertSeeInOrder([
             $courseB->title,
@@ -76,7 +76,7 @@ it('includes link to product videos', function () {
 
     // Act & Assert
     actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('pages.dashboard'))
         ->assertOk()
         ->assertSeeText('Watch videos')
         ->assertSee(route('pages.course-videos', Course::first()));

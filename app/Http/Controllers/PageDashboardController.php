@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use function auth;
+
 use function compact;
+use function current_user;
 
 class PageDashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $purchasedCourses = auth()->user()->courses;
+        $purchasedCourses = current_user()->courses;
 
         return view('dashboard', compact('purchasedCourses'));
     }

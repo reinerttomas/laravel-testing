@@ -23,3 +23,33 @@ parameters:
 	        message: '#Cannot call method [a-zA-Z0-9\(\)]+ on array\|Pest\\Expectation<array\|string>\|Pest\\Expectations\\EachExpectation<array\|string>\|Pest\\Expectations\\HigherOrderExpectation<Pest\\Expectation<array\|string>, array\|string\|null>\|Pest\\Expectations\\OppositeExpectation<array\|string>\|string.#'
 	        paths:
 	            - tests/*
+
+	    -
+	        message: '#Call to an undefined method Pest\\PendingCalls\\TestCall\|Pest\\Support\\HigherOrderTapProxy::skip\(\).#'
+	        paths:
+	            - tests/*
+
+	    -
+	        message: '#Access to an undefined property object::\$token.#'
+	        paths:
+	            - tests/*
+
+	    -
+	        message: '#Access to an undefined property Livewire\\Features\\SupportTesting\\Testable::\$state.#'
+	        paths:
+	            - tests/*
+
+	    -
+	        message: '#Access to an undefined property Pest\\Mixins\\Expectation<array\|string>\|Pest\\Mixins\\Expectation<Pest\\Expectation<array\|string>>::[a-zA-Z0-9\\_\$]+.#'
+	        paths:
+	            - tests/*
+
+	    -
+	        message: '#Cannot call method [a-zA-Z0-9\\_\$\(\)]+ on App\\Models\\User\|null.#'
+	        paths:
+	            - tests/*
+
+	    -
+	        message: '#Cannot access property [a-zA-Z0-9\\_\$]+ on App\\Models\\User\|null.#'
+	        paths:
+	            - tests/*
