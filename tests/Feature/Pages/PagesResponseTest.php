@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\Course;
 use App\Models\User;
 
+use App\Models\Video;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
@@ -30,5 +31,18 @@ it('returns a successful response for dashboard page', function () {
     // Act & Assert
     actingAs($user)
         ->get(route('pages.dashboard'))
+        ->assertOk();
+});
+
+it('returns a successful response for videos page', function () {
+    // Arrange
+    $user = User::factory()->create();
+    $course = Course::factory()
+        ->has(Video::factory())
+        ->create();
+
+    // Act & Assert
+    actingAs($user)
+        ->get(route('pages.course-videos', $course))
         ->assertOk();
 });

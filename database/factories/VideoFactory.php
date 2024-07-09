@@ -16,6 +16,12 @@ class VideoFactory extends Factory
 
     public function definition(): array
     {
-        return [];
+        return [
+            'slug' => $this->faker->unique()->slug(),
+            'vimeo_id' => $this->faker->unique()->uuid(),
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'duration' => $this->faker->numberBetween(1, 99),
+        ];
     }
 }
