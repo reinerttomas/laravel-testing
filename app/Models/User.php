@@ -75,4 +75,13 @@ class User extends Authenticatable
             ->withTimestamps()
             ->orderByPivot('created_at', 'desc');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Video>
+     */
+    public function videos(): BelongsToMany
+    {
+        return $this->belongsToMany(Video::class, 'watched_videos')
+            ->withTimestamps();
+    }
 }
