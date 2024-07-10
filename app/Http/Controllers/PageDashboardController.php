@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Support\Facades\Auth;
 use Illuminate\View\View;
 
 use function compact;
-use function current_user;
 
 class PageDashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $purchasedCourses = current_user()->purchasedCourses;
+        $purchasedCourses = Auth::userOrFail()->purchasedCourses;
 
         return view('dashboard', compact('purchasedCourses'));
     }

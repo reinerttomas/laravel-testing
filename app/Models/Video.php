@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,6 @@ class Video extends Model
 
     public function alreadyWatchedByCurrentUser(): bool
     {
-        return (bool) \current_user()->watchedVideos()->where('video_id', $this->id)->count();
+        return (bool) Auth::userOrFail()->watchedVideos()->where('video_id', $this->id)->count();
     }
 }

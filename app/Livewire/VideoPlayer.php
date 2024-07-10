@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Video;
+use App\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
-
-use function current_user;
 
 class VideoPlayer extends Component
 {
@@ -32,12 +31,12 @@ class VideoPlayer extends Component
 
     public function markVideoAsCompleted(): void
     {
-        current_user()->watchedVideos()->attach($this->video);
+        Auth::userOrFail()->watchedVideos()->attach($this->video);
     }
 
     public function markVideoAsNotCompleted(): void
     {
-        current_user()->watchedVideos()->detach($this->video);
+        Auth::userOrFail()->watchedVideos()->detach($this->video);
     }
 
     public function isCurrentVideo(Video $video): bool

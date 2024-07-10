@@ -2,12 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
+namespace App\Support\Facades;
 
-if (! function_exists('current_user')) {
-    function current_user(?string $guard = null): User
+use App\Models\User;
+use Illuminate\Support\Facades\Auth as BaseAuth;
+use RuntimeException;
+
+class Auth extends BaseAuth
+{
+    public static function userOrFail(): User
     {
-        $user = auth($guard)->user();
+        $user = BaseAuth::user();
 
         if (! $user instanceof User) {
             throw new RuntimeException('Cannot get the currently authenticated user.');
