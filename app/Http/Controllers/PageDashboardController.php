@@ -13,7 +13,7 @@ class PageDashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $purchasedCourses = current_user()->courses;
+        $purchasedCourses = current_user()->purchasedCourses;
 
         return view('dashboard', compact('purchasedCourses'));
     }

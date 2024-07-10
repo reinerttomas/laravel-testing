@@ -24,7 +24,7 @@ it('lists purchased courses', function () {
                 ['title' => 'Course A'],
                 ['title' => 'Course B'],
             )
-        ))
+        ), 'purchasedCourses')
         ->create();
 
     // Act & Assert
@@ -55,8 +55,8 @@ it('shows latest purchased course first', function () {
     $courseA = Course::factory()->create();
     $courseB = Course::factory()->create();
 
-    $user->courses()->attach($courseA, ['created_at' => CarbonImmutable::yesterday()]);
-    $user->courses()->attach($courseB, ['created_at' => CarbonImmutable::now()]);
+    $user->purchasedCourses()->attach($courseA, ['created_at' => CarbonImmutable::yesterday()]);
+    $user->purchasedCourses()->attach($courseB, ['created_at' => CarbonImmutable::now()]);
 
     // Act & Assert
     actingAs($user)
@@ -71,7 +71,7 @@ it('shows latest purchased course first', function () {
 it('includes link to product videos', function () {
     // Arrange
     $user = User::factory()
-        ->has(Course::factory())
+        ->has(Course::factory(), 'purchasedCourses')
         ->create();
 
     // Act & Assert

@@ -69,7 +69,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Course>
      */
-    public function courses(): BelongsToMany
+    public function purchasedCourses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'purchased_courses')
             ->withTimestamps()
@@ -79,7 +79,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Video>
      */
-    public function videos(): BelongsToMany
+    public function watchedVideos(): BelongsToMany
     {
         return $this->belongsToMany(Video::class, 'watched_videos')
             ->withTimestamps();

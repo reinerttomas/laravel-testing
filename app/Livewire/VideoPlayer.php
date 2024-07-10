@@ -32,11 +32,11 @@ class VideoPlayer extends Component
 
     public function markVideoAsCompleted(): void
     {
-        current_user()->videos()->attach($this->video);
+        current_user()->watchedVideos()->attach($this->video);
     }
 
     public function markVideoAsNotCompleted(): void
     {
-        current_user()->videos()->detach($this->video);
+        current_user()->watchedVideos()->detach($this->video);
     }
 }
