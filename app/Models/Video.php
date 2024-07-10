@@ -28,4 +28,9 @@ class Video extends Model
     {
         return Str::of((string) $this->duration_in_min)->append('min')->toString();
     }
+
+    public function alreadyWatchedByCurrentUser(): bool
+    {
+        return (bool) \current_user()->watchedVideos()->where('video_id', $this->id)->count();
+    }
 }
