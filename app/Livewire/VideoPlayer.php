@@ -39,4 +39,9 @@ class VideoPlayer extends Component
     {
         current_user()->watchedVideos()->detach($this->video);
     }
+
+    public function isCurrentVideo(Video $video): bool
+    {
+        return $this->video->is($video);
+    }
 }
