@@ -54,8 +54,8 @@ it('shows provided course video', function () {
     $course = Course::factory()
         ->has(Video::factory()->count(2)->state(
             new Sequence(
-                ['title' => 'Video A'],
-                ['title' => 'Video B'],
+                ['title' => 'Videos A'],
+                ['title' => 'Videos B'],
             )
         ))
         ->create();
@@ -67,5 +67,5 @@ it('shows provided course video', function () {
             'video' => $course->videos()->orderByDesc('id')->first(),
         ]))
         ->assertOk()
-        ->assertSeeText('Video B');
+        ->assertSeeText('Videos B');
 });

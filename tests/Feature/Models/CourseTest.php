@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Course;
 use App\Models\Video;
-use App\Queries\Scopes\Released;
+use App\Scopes\Courses\Released;
 
 it('only returns released courses for release tappable scope', function () {
     // Arrange

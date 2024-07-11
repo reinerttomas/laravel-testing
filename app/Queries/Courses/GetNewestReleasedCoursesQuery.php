@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Queries;
+namespace App\Queries\Courses;
 
 use App\Models\Course;
-use App\Queries\Scopes\NewestReleased;
-use App\Queries\Scopes\Released;
+use App\Scopes\Courses\NewestReleased;
+use App\Scopes\Courses\Released;
 use Illuminate\Database\Eloquent\Collection;
 
 class GetNewestReleasedCoursesQuery

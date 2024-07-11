@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Contracts\Queries\Scopes;
+namespace App\Contracts\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @template TModelClass of \Illuminate\Database\Eloquent\Model
  */
-interface CanBuildQuery
+interface Queryable
 {
     /**
      * @param  Builder<TModelClass>  $query

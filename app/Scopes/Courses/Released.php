@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Queries\Scopes;
+namespace App\Scopes\Courses;
 
-use App\Contracts\Queries\Scopes\CanBuildQuery;
+use App\Contracts\Scopes\Queryable;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * @implements CanBuildQuery<\App\Models\Course>
+ * @implements Queryable<\App\Models\Course>
  */
-final readonly class Released implements CanBuildQuery
+final readonly class Released implements Queryable
 {
     public function __invoke(Builder $query): void
     {

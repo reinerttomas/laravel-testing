@@ -34,7 +34,7 @@ it('tells if current user not yet watched a given video', function () {
 
     // Act & Assert
     actingAs($user);
-    expect($video->alreadyWatchedByCurrentUser())->toBeFalse();
+    expect($video->isAlreadyWatchedByCurrentUser())->toBeFalse();
 });
 
 it('tells if current user already watched a given video', function () {
@@ -45,5 +45,5 @@ it('tells if current user already watched a given video', function () {
 
     // Act & Assert
     actingAs($user);
-    expect($user->watchedVideos()->first()->alreadyWatchedByCurrentUser())->toBeTrue();
+    expect($user->watchedVideos()->first()->isAlreadyWatchedByCurrentUser())->toBeTrue();
 });

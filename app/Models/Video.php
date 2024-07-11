@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Queries\Videos\CountAlreadyWatchedVideosQuery;
 use App\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,8 +31,8 @@ class Video extends Model
         return Str::of((string) $this->duration_in_min)->append('min')->toString();
     }
 
-    public function alreadyWatchedByCurrentUser(): bool
+    public function isAlreadyWatchedByCurrentUser(): bool
     {
-        return (bool) Auth::userOrFail()->watchedVideos()->where('video_id', $this->id)->count();
+        return (bool) (new CountAlreadyWatchedVideosQuery())->run(Auth::userOrFail(), $this);
     }
 }

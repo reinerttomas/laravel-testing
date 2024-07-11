@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Course;
-use App\Queries\GetNewestReleasedCoursesQuery;
+use App\Queries\Courses\GetNewestReleasedCoursesQuery;
 use Carbon\CarbonImmutable;
 
 it('only returns released courses order by newest', function () {
