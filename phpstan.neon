@@ -28,3 +28,8 @@ parameters:
 	        message: '#Cannot access property [a-zA-Z0-9\\_\$]+#'
 	        paths:
 	            - tests/*
+
+	    -
+	        message: '#Call to an undefined static method Illuminate\\Support\\Facades\\App::[a-zA-Z0-9\\_\$]+#'
+	        paths:
+	            - tests/*
