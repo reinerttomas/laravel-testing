@@ -6,7 +6,6 @@ namespace App\Queries\Videos;
 
 use App\Models\User;
 use App\Models\Video;
-use App\Scopes\Videos\IsVideo;
 
 final readonly class CountAlreadyWatchedVideosQuery
 {
@@ -14,7 +13,7 @@ final readonly class CountAlreadyWatchedVideosQuery
     {
         return $user
             ->watchedVideos()
-            ->tap(new IsVideo($video->id))
+            ->where('video_id', $video->id)
             ->count();
     }
 }
